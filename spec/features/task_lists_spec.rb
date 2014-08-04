@@ -17,4 +17,11 @@ feature 'Task lists' do
     expect(page).to have_content("Household Chores")
   end
 
+  scenario "As an anonamous user, I can visit the about page" do
+    visit signin_path
+    expect(page).to have_content("About")
+    click_on "About"
+    expect(page).to have_content("Lorem ipsum dolor sit amet,")
+  end
+
 end
