@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get "signin" => "sessions#new", as: :signin
   post "signin" => "sessions#create"
   get "signout" => "sessions#destroy", as: :signout
-  get "about" => "sessions#about", as: :about
+  get "abouts" => "abouts#show", as: :abouts
+  get "new" => "task_lists#new", as: :new_task_list
+  post "create" => "task_lists#create", as: :create_task_list
 end
