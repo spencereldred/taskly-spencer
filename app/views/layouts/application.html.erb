@@ -22,9 +22,7 @@
 </header>
 <main>
   <div class="container">
-    <% if flash[:notice] %>
-      <%= flash[:notice] %><br>
-    <% end %>
+
     <%= yield %>
   </div>
 </main>

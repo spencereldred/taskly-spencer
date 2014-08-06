@@ -1,0 +1,14 @@
+<section class="task-list" >
+  <h2><%= @task_list.name %></h2>
+  <% @task_list.tasks.each do |task| %>
+    <div class="tasks">
+      <div id="task-<%= task.id%>" style="margin-left: 20px; padding-top: 12px;">
+        <%= task.description  %>
+
+        <%= link_to "Delete", delete_task_path(task.id), {:class => "delete_button"} %>
+
+      </div>
+    </div>
+  <% end %>
+</section>
+<br style="clear:both;"/>

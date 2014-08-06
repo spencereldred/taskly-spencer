@@ -84,3 +84,79 @@ main {
     font-size: 110%;
   }
 }
+
+#no_task {
+  color: maroon;
+  margin-left: 10%;
+}
+
+.task_list {
+  background-color: lightgrey;
+}
+
+#task_created {
+  background-color: lightgreen;
+  width: 80%;
+  margin-left: 5%;
+}
+.tasks {
+  margin-left: 5%;
+  margin-bottom: 1.5%;
+  width: 80%;
+  height: 40px;
+  background-color: #eaeaea;
+}
+
+.left-10 {
+  margin-left: 10%;
+}
+
+.my_button {
+  background-color: #5ebbff;
+  color: white;
+  font-size: .9em;
+  margin-left: 10%;
+  border-radius: 5px;
+}
+
+.my_textfield {
+  width: 40%;
+  margin-left: 10%;
+}
+
+.my_label {
+  font-size: .8em;
+  margin-left: 10%;
+}
+
+.delete_button {
+  float: right;
+  width: 60px;
+  height: 20px;
+  margin-right: 20px;
+  margin-top: -5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  text-align: center;
+  background-color: lightgrey;
+  padding-top: 3px;
+  text-decoration: none;
+  color: black;
+}
+
+.completed_button {
+  float: right;
+  width: 90px;
+  height: 20px;
+  margin-right: 20px;
+  margin-top: -5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  text-align: center;
+  background-color: lightgrey;
+  padding-top: 3px;
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,22 @@
+<h1 class="left-10">Add a task</h1>
+<div id="no_task">
+<% if flash[:notice] %>
+  <%= flash[:notice] %><br><br>
+<% end %>
+</div>
+<%= form_for @task, url: create_task_path do |f| %>
+  <%= f.label :description, class: 'my_label' %><br>
+  <%= f.text_field :description, { :class => 'my_textfield' } %><br><br>
+  <% if @task.errors[:description] %>
+    <p class="error"><%= @task.errors[:description].first %></p>
+  <% end %>
+  <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
+
+  <div style="margin-left: 10%;">
+    <%= f.date_select :due_date %><br><br>
+  </div>
+  <div>
+    <%= f.submit "Create Task", { :class => "my_button" } %>
+  </div>
+
+<% end %>
