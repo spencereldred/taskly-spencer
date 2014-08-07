@@ -22,7 +22,6 @@ class TasksController < ApplicationController
   end
 
   def update #completed task
-    # binding.pry
     id = params[:id]
     task_list_id = params[:task_list_id]
     task = Task.find(id)

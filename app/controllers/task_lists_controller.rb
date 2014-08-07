@@ -27,7 +27,6 @@ class TaskListsController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @task_list = TaskList.find(params[:id])
   end
 
@@ -42,10 +41,14 @@ class TaskListsController < ApplicationController
   end
 
   def completed
-    binding.pry
     @task_list = TaskList.find(params[:id])
+  end
 
-
+  def destroy
+    task_list = TaskList.find(params[:id])
+    task_list.destroy
+    flash[:notice] = "Task List was deleted successfully!"
+    redirect_to root_path
   end
 
 end
