@@ -27,6 +27,8 @@ feature 'Task lists' do
     # save_and_open_page
     expect(page).to have_content("Work List")
     expect(page).to have_content("Household Chores")
+    # with no tasks - special message appears
+    expect(page).to have_content("Nothing here to see!")
   end
 
   scenario "As an anonamous user, I can visit the abouts page" do
@@ -94,7 +96,7 @@ feature 'Task lists' do
     expect(page).to have_content("Feed the cats (35 days)")
 
     # delete the task
-    within("div.tasks") do
+    within(first("div.tasks")) do
       within("div") do
         click_on "Delete"
       end
@@ -196,6 +198,7 @@ feature 'Task lists' do
     expect(page).not_to have_content("Household Chores")
     expect(page).to have_content("Work List")
   end
+
 
 
 end

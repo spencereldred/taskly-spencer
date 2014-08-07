@@ -12,13 +12,20 @@
   <% end %>
 </p>
 <% @task_lists.each do |task_list| %>
-
   <section class="task-list" id="task-list-<%= task_list.id %>" >
       <h2 class="item" style="margin-left: 5%;text-align:left;float:left;width: 30%;"><%= link_to task_list.name, task_list_path(task_list.id), {:style => 'color: black;text-decoration: none;'} %></h2><br><br>
     <%= link_to "Delete", task_list, {:method => :delete, :confirm => "Really?", :style => 'margin-left: 15%; width:10%; float:left;' } %>
     <%= link_to "Edit", edit_task_list_path(task_list.id), {:style => 'width:10%; float:left;' } %>
     <%= link_to "+ Add New Task", new_task_list_task_path(task_list.id), {:style => 'float:left;' } %>
     <br style="clear:both;">
+    <% if task_list.tasks.length == 0 %>
+      <div class="tasks" >
+        <div style="text-align: center; padding-top: 12px;">
+          "Nothing here to see!"
+        </div>
+
+      </div>
+    <% end %>
     <% task_list.tasks.sort_by {|task| task.due_date }.each do |task| %>
       <% unless task.completed %>
       <div class="tasks">
