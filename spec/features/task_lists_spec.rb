@@ -188,7 +188,13 @@ feature 'Task lists' do
   end
 
   scenario "As a user, I should be able to delete a task list" do
-    skip
+    expect(page).to have_content("Household Chores")
+    expect(page).to have_content("Work List")
+    within(first(".task-list")) do
+      click_on "Delete"
+    end
+    expect(page).not_to have_content("Household Chores")
+    expect(page).to have_content("Work List")
   end
 
 
