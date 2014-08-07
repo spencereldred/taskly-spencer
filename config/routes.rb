@@ -100,7 +100,7 @@ Rails.application.routes.draw do
 
   # task_list_task      GET    /task_lists/:task_list_id/tasks/:id(.:format)      tasks#show
 
-  get "/task/completed/:id" => "tasks#completed", as: :completed_task
+  get "/task_list/:id/completed" => "task_lists#completed", as: :completed_task
   #                     PATCH  /task_lists/:task_list_id/tasks/:id(.:format)      tasks#update
   #                     PUT    /task_lists/:task_list_id/tasks/:id(.:format)      tasks#update
 

@@ -32,15 +32,20 @@ class TaskListsController < ApplicationController
   end
 
   def update
-    # binding.pry
     @task_list = TaskList.find(params[:id])
-
     if @task_list.update_attributes(name: params[:task_list][:name])
       flash[:notice] = "Task List was updated successfully!"
       redirect_to root_path
     else
       render :edit
     end
+  end
+
+  def completed
+    binding.pry
+    @task_list = TaskList.find(params[:id])
+
+
   end
 
 end

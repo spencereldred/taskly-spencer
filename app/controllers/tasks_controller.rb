@@ -21,11 +21,13 @@ class TasksController < ApplicationController
 
   end
 
-  def completed
+  def update #completed task
+    # binding.pry
     id = params[:id]
+    task_list_id = params[:task_list_id]
     task = Task.find(id)
     task.update_attributes(completed: true)
-    redirect_to root_path
+    redirect_to completed_task_path(task_list_id)
   end
 
   def destroy
