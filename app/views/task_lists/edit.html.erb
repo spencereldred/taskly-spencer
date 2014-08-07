@@ -4,7 +4,7 @@
     <%= flash[:notice] %><br>
   <% end %>
 </p>
-<%= form_for @task_list, url: update_task_list_path do |f| %>
+<%= form_for @task_list, :url => { :action => "update" }, :html => { :method => 'put' } do |f| %>
   <div>
     <%= f.label :name, { :class => 'my_label' }  %><br>
     <%= f.text_field :name, { :class => 'my_textfield' } %>

@@ -161,6 +161,8 @@ feature 'Task lists' do
       end
     end
 
+    # expect(page).to have_content("Work List - Completed")
+    # expect(page).to have_content("Feed the cats")
     expect(page).not_to have_content("Feed the cats")
 
   end

@@ -4,9 +4,10 @@
     <%= flash[:notice] %><br>
   <% end %>
 </p>
-<%= form_for @task_list, url: create_task_list_path do |f| %>
+<%= form_for @task_list do |f| %>
+
   <div>
-    <%= f.label "Title", { :class => 'my_label' } %><br>
+    <div><%= f.label "Title", { :class => 'my_label' } %></div><br>
     <div ><%= f.text_field :name, { :class => 'my_textfield' } %></div><br>
   </div>
   <div>
