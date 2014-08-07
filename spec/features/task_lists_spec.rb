@@ -199,6 +199,29 @@ feature 'Task lists' do
     expect(page).to have_content("Work List")
   end
 
+  scenario "As a user, I should be able to assign a user as I create a task" do
+    # create first task
+    within(first(".task-list")) do
+      click_on "+ Add New Task"
+    end
+
+    expect(page).to have_content("Add a task")
+    expect(page).to have_content("Description")
+    expect(page).to have_content("Due Date")
+    expect(page).to have_content("Assigned to")
+    fill_in "Description", with: "Feed the cats"
+    select "2014", from: "task[due_date(1i)]"
+    select "November", from: "task[due_date(2i)]"
+    select "4", from: "task[due_date(3i)]"
+    save_and_open_page
+    select 'Some User', from: "task[assigned_to]"
+    click_on "Create Task"
+    expect(page).to have_content("Task was created successfully!")
+    # save_and_open_page
+    expect(page).to have_content("Feed the cats (35 days) - Some User")
+
+  end
+
 
 
 end

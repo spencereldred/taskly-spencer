@@ -31,7 +31,8 @@
       <div class="tasks">
         <div id="task-<%= task.id%>" style="margin-left: 20px; padding-top: 12px;">
           <%= task.description  %>
-          (<%= (task.due_date - Date.today).to_i %> days)
+          (<%= (task.due_date - Date.today).to_i %> days) -
+          <b><%= task.assigned_to %></b>
           <!-- example delete link from stack overflow -->
           <%#= link_to "delete", article_comment_path(@article, comment_item),
                       :method => :delete, :confirm => "Really?" %>
