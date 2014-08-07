@@ -1,0 +1,18 @@
+<h1 class="left-10">Add a Task List</h1>
+<p class="bg-success left-10" id="no_task">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %><br>
+  <% end %>
+</p>
+<%= form_for @task_list do |f| %>
+
+  <div>
+    <div><%= f.label "Title", { :class => 'my_label' } %></div><br>
+    <div ><%= f.text_field :name, { :class => 'my_textfield' } %></div><br>
+  </div>
+  <div>
+    <%= f.submit "Create Task List",{ :class => "my_button" }%>
+  </div>
+
+<% end %>
+

@@ -1,0 +1,27 @@
+<h1 class="left-10">Add a task to <%= @task_list.name %></h1>
+<div id="no_task">
+<% if flash[:notice] %>
+  <%= flash[:notice] %><br><br>
+<% end %>
+</div>
+<%= form_for [@task_list, @task] do |f| %>
+  <%= f.label :description, class: 'my_label' %><br>
+  <%= f.text_field :description, { :class => 'my_textfield' } %><br><br>
+  <% if @task.errors[:description] %>
+    <p class="error"><%= @task.errors[:description].first %></p>
+  <% end %>
+  <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
+
+  <div style="margin-left: 10%;">
+    <%= f.date_select :due_date %><br><br>
+  </div>
+  <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
+
+  <div style="margin-left: 10%;">
+    <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
+  </div>
+  <div>
+    <%= f.submit "Create Task", { :class => "my_button" } %>
+  </div>
+
+<% end %>
