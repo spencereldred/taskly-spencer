@@ -3,7 +3,7 @@
 <% @task_list.tasks.sort_by {|task| task.due_date }.each do |task| %>
   <% if task.completed %>
     <div class="tasks">
-      <div id="task-<%= task.id%>" style="margin-left: 20px; padding-top: 12px;">
+      <div id="task-<%= task.id%>" class="left-10 pad-top-12">
         <%= task.description  %>
         (<%= (task.due_date - Date.today).to_i %> days)
         <%= link_to "Delete", [@task_list, task],{ :method => :delete, :confirm => "Really?", :class => "delete_button"} %>
