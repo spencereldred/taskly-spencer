@@ -17,10 +17,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def about
-    render :about
-  end
-
   def destroy
     session.destroy
     redirect_to signin_path

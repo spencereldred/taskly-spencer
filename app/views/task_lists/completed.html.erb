@@ -7,8 +7,6 @@
         <%= task.description  %>
         (<%= (task.due_date - Date.today).to_i %> days)
         <%= link_to "Delete", [@task_list, task],{ :method => :delete, :confirm => "Really?", :class => "delete_button"} %>
-        <%#= link_to "Delete", task, method: :delete, {:class => "delete_button"} %>
-
       </div>
     </div>
   <% end %>

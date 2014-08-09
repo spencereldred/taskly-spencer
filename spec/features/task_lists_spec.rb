@@ -200,7 +200,7 @@ feature 'Task lists' do
   end
 
   scenario "As a user, I should be able to assign a user as I create a task" do
-    # create first task
+    # create a task
     within(first(".task-list")) do
       click_on "+ Add New Task"
     end
@@ -213,7 +213,6 @@ feature 'Task lists' do
     select "2014", from: "task[due_date(1i)]"
     select "November", from: "task[due_date(2i)]"
     select "4", from: "task[due_date(3i)]"
-    save_and_open_page
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
