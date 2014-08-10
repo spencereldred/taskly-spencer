@@ -13,11 +13,9 @@ class TasksController < ApplicationController
       flash[:notice] = "Task was created successfully!"
       redirect_to root_path
     else
-      flash[:notice] = "Your task could not be created."
-      @task = Task.new
-      render :new
+      flash[:notice] = "Your task could not be created - due date in the past."
+      redirect_to new_task_list_task_path(params["task_list_id"])
     end
-
   end
 
   def update #completed task

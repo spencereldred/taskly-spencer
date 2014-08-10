@@ -6,7 +6,7 @@
 </div>
 <%= form_for [@task_list, @task] do |f| %>
   <%= f.label :description, class: 'my_label' %><br>
-  <%= f.text_field :description, { :class => 'my_textfield' } %><br><br>
+  <%= f.text_field :description, { :class => 'my_textfield'  } %><br><br>
   <% if @task.errors[:description] %>
     <p class="error"><%= @task.errors[:description].first %></p>
   <% end %>

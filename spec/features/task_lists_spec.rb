@@ -216,11 +216,29 @@ feature 'Task lists' do
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
-    # save_and_open_page
     expect(page).to have_content("Feed the cats (35 days) - Some User")
 
   end
 
+  scenario "As a user, I should not be able to enter past due dates" do
 
+    within(first(".task-list")) do
+      click_on "+ Add New Task"
+    end
+
+    expect(page).to have_content("Add a task")
+    expect(page).to have_content("Description")
+    expect(page).to have_content("Due Date")
+    expect(page).to have_content("Assigned to")
+    fill_in "Description", with: "Task: with due date in the past"
+    select "2014", from: "task[due_date(1i)]"
+    select "September", from: "task[due_date(2i)]"
+    select "15", from: "task[due_date(3i)]"
+    select 'Some User', from: "task[assigned_to]"
+    click_on "Create Task"
+    expect(page).to have_content("Your task could not be created - due date in the past.")
+    # save_and_open_page
+    expect(page).not_to have_content("Task: with due date in the past")
+  end
 
 end
