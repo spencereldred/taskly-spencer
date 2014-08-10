@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :ensure_current_user
+  before_action :ensure_current_user, :except => [:about]
 
   def ensure_current_user
     redirect_to signin_path unless current_user
