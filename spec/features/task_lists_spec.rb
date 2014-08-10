@@ -8,7 +8,8 @@ feature 'Task lists' do
     Timecop.freeze(Date.new(2014, 10, 01))
 
     # create user, task_lists, login
-    create_user email: "user@example.com"
+    create_user
+    create_user name: "Other User", email: "other@example.com"
     TaskList.create!(name: "Household Chores")
     TaskList.create!(name: "Work List")
     visit signin_path
@@ -239,6 +240,44 @@ feature 'Task lists' do
     expect(page).to have_content("Your task could not be created - due date in the past.")
     # save_and_open_page
     expect(page).not_to have_content("Task: with due date in the past")
+  end
+
+  scenario "As a user, I should be able to see tasks assigned to me" do
+    # create a task for "Some User" who is current_user
+    within(first(".task-list")) do
+      click_on "+ Add New Task"
+    end
+    expect(page).to have_content("Add a task")
+    fill_in "Description", with: "Feed the cats"
+    select "2014", from: "task[due_date(1i)]"
+    select "November", from: "task[due_date(2i)]"
+    select "4", from: "task[due_date(3i)]"
+    select 'Some User', from: "task[assigned_to]"
+    click_on "Create Task"
+    expect(page).to have_content("Task was created successfully!")
+    expect(page).to have_content("Feed the cats (35 days) - Some User")
+
+    # create a task for "Other User"
+    within(first(".task-list")) do
+      click_on "+ Add New Task"
+    end
+    expect(page).to have_content("Add a task")
+    fill_in "Description", with: "Other User walk the dog"
+    select "2014", from: "task[due_date(1i)]"
+    select "November", from: "task[due_date(2i)]"
+    select "4", from: "task[due_date(3i)]"
+    select 'Other User', from: "task[assigned_to]"
+    click_on "Create Task"
+    expect(page).to have_content("Task was created successfully!")
+    expect(page).to have_content("Other User walk the dog (35 days) - Other User")
+
+    within(first(".task-list")) do
+      click_on "View my tasks"
+    end
+    expect(page).to have_content("Tasks assigned to Some User")
+    expect(page).to have_content("Feed the cats (35 days) - Some User")
+    expect(page).not_to have_content("Other User walk the dog (35 days) - Other User")
+
   end
 
 end

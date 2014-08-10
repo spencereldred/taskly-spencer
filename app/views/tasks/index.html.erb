@@ -1,0 +1,17 @@
+<h1>Tasks assigned to <%= current_user.name %></h1>
+<section class="task-list" >
+  <h2><%= @task_list.name %></h2>
+  <% @tasks.sort_by {|task| task.due_date }.each do |task| %>
+    <% unless task.completed %>
+      <div class="tasks">
+        <div id="task-<%= task.id%>" class="left-20 pad-top-12">
+          <%= task.description  %>
+          (<%= (task.due_date - Date.today).to_i %> days) -
+          <b><%= task.assigned_to %></b>
+          <%= link_to "Delete", [@task_list, task],{ :method => :delete, :confirm => "Really?", :class => "delete_button"} %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</section>
+<br style="clear:both;"/>

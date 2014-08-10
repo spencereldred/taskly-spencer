@@ -5,4 +5,5 @@ def create_user(overrides = {})
     password: 'password',
     password_confirmation: 'password'
   }.merge(overrides))
+
 end

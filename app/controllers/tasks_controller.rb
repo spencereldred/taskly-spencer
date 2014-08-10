@@ -1,4 +1,10 @@
 class TasksController < ApplicationController
+
+  def index
+    @task_list = TaskList.find(params[:task_list_id])
+    @tasks = @task_list.tasks.where(assigned_to: current_user.name)
+  end
+
   def new
     @task_list = TaskList.find(params[:task_list_id])
     @task = Task.new(task_list_id: @task_list)
