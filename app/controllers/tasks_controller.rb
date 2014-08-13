@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def index
     @task_list = TaskList.find(params[:task_list_id])
     @tasks = @task_list.tasks.where(assigned_to: current_user.name)
+    # binding.pry
   end
 
   def new
@@ -14,13 +15,15 @@ class TasksController < ApplicationController
   def create
     task = params[:task]
     date = Date.new(task["due_date(1i)"].to_i, task["due_date(2i)"].to_i, task["due_date(3i)"].to_i)
-    @new_task = Task.new(description: params[:task][:description], due_date: date,task_list_id: params[:task_list_id].to_i, assigned_to: params[:task][:assigned_to])
-    if @new_task.save
+    @task = Task.new(description: params[:task][:description], due_date: date,task_list_id: params[:task_list_id].to_i, assigned_to: params[:task][:assigned_to])
+    if @task.save
       flash[:notice] = "Task was created successfully!"
       redirect_to root_path
     else
       flash[:notice] = "Your task could not be created - due date in the past."
-      redirect_to new_task_list_task_path(params["task_list_id"])
+      @task_list = TaskList.find(params["task_list_id"])
+      @users = User.all
+      render :new
     end
   end
 

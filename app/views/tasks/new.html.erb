@@ -5,11 +5,12 @@
 <% end %>
 </div>
 <%= form_for [@task_list, @task] do |f| %>
+  <% if @task.errors.messages[:description] %>
+    <p class="error left-10"><%= @task.errors.messages[:description].first %></p>
+  <% end %>
   <%= f.label :description, class: 'my_label' %><br>
   <%= f.text_field :description, { :class => 'my_textfield'  } %><br><br>
-  <% if @task.errors[:description] %>
-    <p class="error"><%= @task.errors[:description].first %></p>
-  <% end %>
+
   <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
 
   <div style="margin-left: 10%;">

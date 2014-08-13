@@ -13,16 +13,17 @@ class TaskListsController < ApplicationController
   end
 
   def create
-    if params[:task_list][:name] != ""
-      tasklist = TaskList.new(name: params[:task_list][:name])
-      if tasklist.save
-        flash[:notice] = "Task List was created successfully!"
-        @task_lists = TaskList.order(:name)
-        redirect_to root_path
-      end
+    # if params[:task_list][:name] != ""
+    @task_list = TaskList.new(name: params[:task_list][:name])
+    if @task_list.save
+      flash[:notice] = "Task List was created successfully!"
+      @task_lists = TaskList.order(:name)
+      redirect_to root_path
+      # end
     else
-      flash[:notice] = "Your task could not be created."
-      redirect_to new_task_list_path
+      flash[:notice] = "Your task list could not be created."
+      binding.pry
+      render :new
     end
   end
 
