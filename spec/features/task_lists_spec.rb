@@ -56,7 +56,7 @@ feature 'Task lists' do
     click_on "+ Add Task List"
     expect(page).to have_content("Add a Task List")
     click_on "Create Task List"
-    expect(page).to have_content("Your task could not be created.")
+    expect(page).to have_content("Your task list could not be created.")
   end
 
   scenario 'As a signed in user, I can edit a task list' do
@@ -237,7 +237,7 @@ feature 'Task lists' do
     select "15", from: "task[due_date(3i)]"
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
-    expect(page).to have_content("Your task could not be created - due date in the past.")
+    expect(page).to have_content("Your task could not be created.")
     # save_and_open_page
     expect(page).not_to have_content("Task: with due date in the past")
   end

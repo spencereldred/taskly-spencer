@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   def index
     @task_list = TaskList.find(params[:task_list_id])
     @tasks = @task_list.tasks.where(assigned_to: current_user.name)
-    # binding.pry
   end
 
   def new
@@ -20,7 +19,7 @@ class TasksController < ApplicationController
       flash[:notice] = "Task was created successfully!"
       redirect_to root_path
     else
-      flash[:notice] = "Your task could not be created - due date in the past."
+      flash[:notice] = "Your task could not be created."
       @task_list = TaskList.find(params["task_list_id"])
       @users = User.all
       render :new

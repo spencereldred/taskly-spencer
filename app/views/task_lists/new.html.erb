@@ -5,7 +5,6 @@
   <% end %>
 </p>
 <%= form_for @task_list do |f| %>
-  <%#=  binding.pry %>
   <% if @task_list.errors.messages[:name] %>
     <p class="error left-10"><%= @task_list.errors.messages[:name].first %></p>
   <% end %>

@@ -5,20 +5,19 @@
 <% end %>
 </div>
 <%= form_for [@task_list, @task] do |f| %>
-  <% if @task.errors.messages[:description] %>
-    <p class="error left-10"><%= @task.errors.messages[:description].first %></p>
-  <% end %>
-  <%= f.label :description, class: 'my_label' %><br>
-  <%= f.text_field :description, { :class => 'my_textfield'  } %><br><br>
-
+  <div>
+    <div><%= f.label :description, class: 'my_label' %></div>
+    <div ><%= f.text_field :description, { :class => 'my_textfield'  } %>
+    <span class="error"><%= @task.errors.messages[:description].first %></span></div>
+  </div>
   <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
 
-  <div style="margin-left: 10%;">
+  <div class="left-10">
     <%= f.date_select :due_date %><br><br>
   </div>
   <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
 
-  <div style="margin-left: 10%;">
+  <div class="left-10">
     <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
   </div>
   <div>
