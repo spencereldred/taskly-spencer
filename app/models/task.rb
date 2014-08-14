@@ -4,6 +4,8 @@ class Task < ActiveRecord::Base
 
   validates :description, presence: true
 
+  validates :assigned_to, presence: true
+
   def present?
     (due_date - Date.today) >= 0
   end

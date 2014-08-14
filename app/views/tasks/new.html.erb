@@ -8,7 +8,7 @@
   <div>
     <div><%= f.label :description, class: 'my_label' %></div>
     <div ><%= f.text_field :description, { :class => 'my_textfield'  } %>
-      <p class="error" id="task_message" ></p>
+      <p class="error" id="task_message" ><%= @task.errors.messages[:description].first %></p>
     </div>
     <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
 
@@ -18,16 +18,16 @@
     <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
 
     <div class="left-10">
-      <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
+      <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true}, class: 'assigned_to' %>
+      <p class="error" id="assigned_to_message" ><%= @task.errors.messages[:assigned_to].first %></p>
+      <br><br>
     </div>
     <div>
       <%= f.submit "Create Task", { :class => "my_button" } %>
     </div>
   </div>
-
 <% end %>
-
-<hr>
-<button class="clear_task_form left-10">Clear Form</button>
+  <hr>
+  -<button class="clear_task_form left-10">Clear Form</button>
 <br>
 

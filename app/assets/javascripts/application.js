@@ -7,6 +7,8 @@ $(document).ready(function(){
   var my_textfield = $('.my_textfield')
   var my_button = $('.my_button')
   var clear_task_form = $('.clear_task_form')
+  var assigned_to_message = $('#assigned_to_message')
+
 
   my_textfield.on("keyup", function(){
     console.log("task_list_form keyup event logged");
@@ -22,12 +24,16 @@ $(document).ready(function(){
     if( my_textfield.val() === "") {
       my_button.prop("disabled", true);
 
-      $('#task_list_message').append('\<p class="prepended error">Can\'t leave textfield blank.</p>');
-      $('#task_message').append('\<p class="prepended error">Can\'t leave textfield blank.</p>');
+      $('#task_list_message').append('\<p class="prepended error">Can\'t leave task list name blank.</p>');
+      $('#task_message').append('\<p class="prepended error">Can\'t leave task description blank.</p>');
     }
     if ( my_textfield.val().length > 20) {
       my_button.prop("disabled", true);
       $('#task_list_message').append('\<p class="prepended error">Task List max limit is 20 characters</p>');
+    }
+    if ( $('.assigned_to').val() === ""){
+      console.log("assigned to is blank")
+      assigned_to_message.append('\<p class="prepended error">Need to assign the task to someone.</p>');
     }
   });
 
@@ -37,6 +43,10 @@ $(document).ready(function(){
     $('.prepended').remove();
     my_button.prop("disabled", true);
 
+  })
+
+  $('.event').on("click", function(e){
+    console.log(e.type);
   })
 
 });
