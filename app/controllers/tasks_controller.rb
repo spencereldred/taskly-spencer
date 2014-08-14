@@ -13,7 +13,9 @@ class TasksController < ApplicationController
 
   def create
     task = params[:task]
-    date = Date.new(task["due_date(1i)"].to_i, task["due_date(2i)"].to_i, task["due_date(3i)"].to_i)
+    new_date = params[:new_due_date].split("/")
+    binding.pry
+    date = Date.new(new_date[2].to_i, new_date[0].to_i, new_date[1].to_i)
     @task = Task.new(description: params[:task][:description], due_date: date,task_list_id: params[:task_list_id].to_i, assigned_to: params[:task][:assigned_to])
     if @task.save
       flash[:notice] = "Task was created successfully!"
