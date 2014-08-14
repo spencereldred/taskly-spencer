@@ -69,9 +69,9 @@ feature 'Task lists' do
 
     expect(page).to have_content("Edit a Task List")
     # expect(page).to have_content("Household Chores")
-    fill_in "Name", with: "Household Chores and More"
+    fill_in "Name", with: "Household Tasks"
     click_on "Update Task List"
-    expect(page).to have_content("Household Chores and More")
+    expect(page).to have_content("Household Tasks")
     expect(page).to have_content("Task List was updated successfully!")
   end
 
