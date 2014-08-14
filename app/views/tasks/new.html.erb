@@ -8,20 +8,26 @@
   <div>
     <div><%= f.label :description, class: 'my_label' %></div>
     <div ><%= f.text_field :description, { :class => 'my_textfield'  } %>
-    <span class="error"><%= @task.errors.messages[:description].first %></span></div>
-  </div>
-  <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
+      <p class="error" id="task_message" ></p>
+    </div>
+    <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
 
-  <div class="left-10">
-    <%= f.date_select :due_date %><br><br>
-  </div>
-  <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
+    <div class="left-10">
+      <%= f.date_select :due_date %><br><br>
+    </div>
+    <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
 
-  <div class="left-10">
-    <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
-  </div>
-  <div>
-    <%= f.submit "Create Task", { :class => "my_button" } %>
+    <div class="left-10">
+      <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
+    </div>
+    <div>
+      <%= f.submit "Create Task", { :class => "my_button" } %>
+    </div>
   </div>
 
 <% end %>
+
+<hr>
+<button class="clear_task_form left-10">Clear Form</button>
+<br>
+
