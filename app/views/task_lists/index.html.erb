@@ -27,7 +27,7 @@
 
       </div>
     <% end %>
-    <% task_list.tasks.sort_by {|task| task.due_date }.each do |task| %>
+    <% task_list.tasks.order(:due_date).each do |task| %>
       <% unless task.completed %>
       <div class="tasks">
         <div id="task-<%= task.id%>" class="left-10 pad-top-12">
