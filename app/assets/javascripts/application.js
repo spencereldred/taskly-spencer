@@ -25,6 +25,10 @@ $(document).ready(function(){
       $('#task_list_message').append('\<p class="prepended error">Can\'t leave textfield blank.</p>');
       $('#task_message').append('\<p class="prepended error">Can\'t leave textfield blank.</p>');
     }
+    if ( my_textfield.val().length > 20) {
+      my_button.prop("disabled", true);
+      $('#task_list_message').append('\<p class="prepended error">Task List max limit is 20 characters</p>');
+    }
   });
 
   clear_task_form.on("click", function(){
