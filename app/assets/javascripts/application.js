@@ -25,6 +25,19 @@ $(document).ready(function(){
   });
 
 
+  my_textfield.on("blur", function(){
+    console.log("my_button click event logged");
+    if( my_textfield.val() === "") {
+      my_button.prop("disabled", true);
+      $('#task_list_message').append('\<p class="prepended error">Can\'t leave task list name blank.</p>');
+      $('#task_message').append('\<p class="prepended error">Can\'t leave task description blank.</p>');
+    };
+    if ( my_textfield.val().length > 20) {
+      my_button.prop("disabled", true);
+      $('#task_list_message').append('\<p class="prepended error">Task List max limit is 20 characters</p>');
+    };
+  })
+
   my_button.on("click", function(){
     console.log("my_button click event logged");
     if( my_textfield.val() === "") {
