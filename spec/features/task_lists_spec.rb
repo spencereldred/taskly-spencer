@@ -105,28 +105,30 @@ feature 'Task lists' do
 
     expect(page).to have_content("Task was deleted successfully!")
     expect(page).not_to have_content("Feed the cats")
-    #
+
     # # Add another task
-    # within(first(".task-list")) do
-    #   click_on "+ Add New Task"
-    # end
-    #
-    # expect(page).to have_content("Add a task")
-    #
-    # fill_in "Description", with: "Walk the dog"
-    # click_on "Create Task"
-    # expect(page).to have_content("Task was created successfully!")
-    # expect(page).to have_content("Walk the dog")
-    #
+    within(first(".task-list")) do
+      click_on "+ Add New Task"
+    end
+
+    expect(page).to have_content("Add a task")
+
+    fill_in "Description", with: "Walk the dog"
+    select "Some User", from: "task[assigned_to]"
+    fill_in "new_due_date", with:  "11/04/2014"
+    click_on "Create Task"
+    expect(page).to have_content("Task was created successfully!")
+    expect(page).to have_content("Walk the dog")
+
     # # Click on List name to see open tasks - i.e. not completed
-    # click_on "Household Chores"
-    # expect(page).to have_content("Household Chores")
-    # expect(page).not_to have_content("Work List")
-    # expect(page).to have_content("Walk the dog")
+    click_on "Household Chores"
+    expect(page).to have_content("Household Chores")
+    expect(page).not_to have_content("Work List")
+    expect(page).to have_content("Walk the dog")
 
   end
 
-  scenario "As a user, completed tasks do not appear on list" do
+  scenario "As a user, completed tasks do not appear on list", js: true do
     expect(page).to have_content("+ Add Task List")
     expect(page).to have_content("Work List")
     expect(page).to have_content("+ Add New Task")
@@ -138,9 +140,8 @@ feature 'Task lists' do
 
     expect(page).to have_content("Add a task")
     fill_in "Description", with: "Feed the cats"
-    select "2014", from: "task[due_date(1i)]"
-    select "November", from: "task[due_date(2i)]"
-    select "4", from: "task[due_date(3i)]"
+    select "Some User", from: "task[assigned_to]"
+    fill_in "new_due_date", with:  "11/04/2014"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
     expect(page).to have_content("Feed the cats (35 days)")
@@ -151,9 +152,8 @@ feature 'Task lists' do
     end
     expect(page).to have_content("Add a task")
     fill_in "Description", with: "Jump the Shark"
-    select "2014", from: "task[due_date(1i)]"
-    select "October", from: "task[due_date(2i)]"
-    select "4", from: "task[due_date(3i)]"
+    select "Some User", from: "task[assigned_to]"
+    fill_in "new_due_date", with:  "10/04/2014"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
     expect(page).to have_content("Jump the Shark (4 days)")
@@ -164,9 +164,8 @@ feature 'Task lists' do
     end
     expect(page).to have_content("Add a task")
     fill_in "Description", with: "Walk the dog"
-    select "2014", from: "task[due_date(1i)]"
-    select "October", from: "task[due_date(2i)]"
-    select "13", from: "task[due_date(3i)]"
+    select "Some User", from: "task[assigned_to]"
+    fill_in "new_due_date", with:  "10/13/2014"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
     expect(page).to have_content("Walk the dog (13 days)")
@@ -211,9 +210,7 @@ feature 'Task lists' do
     expect(page).to have_content("Due Date")
     expect(page).to have_content("Assigned to")
     fill_in "Description", with: "Feed the cats"
-    select "2014", from: "task[due_date(1i)]"
-    select "November", from: "task[due_date(2i)]"
-    select "4", from: "task[due_date(3i)]"
+    fill_in "new_due_date", with:  "11/04/2014"
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
@@ -232,9 +229,7 @@ feature 'Task lists' do
     expect(page).to have_content("Due Date")
     expect(page).to have_content("Assigned to")
     fill_in "Description", with: "Task: with due date in the past"
-    select "2014", from: "task[due_date(1i)]"
-    select "September", from: "task[due_date(2i)]"
-    select "15", from: "task[due_date(3i)]"
+    fill_in "new_due_date", with:  "09/15/2014"
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Your task could not be created.")
@@ -249,9 +244,7 @@ feature 'Task lists' do
     end
     expect(page).to have_content("Add a task")
     fill_in "Description", with: "Feed the cats"
-    select "2014", from: "task[due_date(1i)]"
-    select "November", from: "task[due_date(2i)]"
-    select "4", from: "task[due_date(3i)]"
+    fill_in "new_due_date", with:  "11/04/2014"
     select 'Some User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")
@@ -263,9 +256,7 @@ feature 'Task lists' do
     end
     expect(page).to have_content("Add a task")
     fill_in "Description", with: "Other User walk the dog"
-    select "2014", from: "task[due_date(1i)]"
-    select "November", from: "task[due_date(2i)]"
-    select "4", from: "task[due_date(3i)]"
+    fill_in "new_due_date", with:  "11/04/2014"
     select 'Other User', from: "task[assigned_to]"
     click_on "Create Task"
     expect(page).to have_content("Task was created successfully!")

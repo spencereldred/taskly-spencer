@@ -4,7 +4,7 @@ describe Task do
 
   it "should be valid" do
     date = Date.today + 1
-    task = Task.create(description: "Walk the dog", due_date: date)
+    task = Task.create(description: "Walk the dog", due_date: date, assigned_to: "Some User")
     expect(task).to be_valid
   end
 
