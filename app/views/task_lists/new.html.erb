@@ -9,17 +9,9 @@
 <div id="error_message"></div>
 
 <div id="task_list_form">
-  <%= form_for @task_list do |f| %>
-    <div>
-      <div><%= f.label "Title", { :class => 'my_label' } %></div><br>
-      <div ><%= f.text_field :name, { :class => 'my_textfield' } %>
-        <p class="error" id="task_list_message" ><%= @task_list.errors.messages[:name].first %></p>
-      </div><br>
-    </div>
-    <div>
-      <%= f.submit "Create Task List",{ :class => "my_button" }%>
-    </div>
-  <% end %>
+  <%= render :partial => 'form',
+             :locals => { :task_list => @task_list, :message => "Create Task List"}
+  %>
 </div>
 <hr>
 <button class="clear_task_form left-10">Clear Form</button>
